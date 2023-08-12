@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :incomes
   resources :expenses
+  resources :incomes
 end
