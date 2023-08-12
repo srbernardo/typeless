@@ -5,6 +5,7 @@ class IncomesController < ApplicationController
 
   def show
     @income = Income.find(params[:id])
+  end
 
   def new
     @income = Income.new
