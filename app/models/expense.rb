@@ -11,6 +11,7 @@ class Expense < ApplicationRecord
   ]
 
   belongs_to :user
+  has_one_attached :photo
 
   validates :date, presence: true
   validates :place, presence: true
@@ -19,5 +20,4 @@ class Expense < ApplicationRecord
   validates :value, presence: true
   validates :category, inclusion: { in: CATEGORY }
   validates :payment_type, inclusion: { in: PAYMENT_TYPE }
-
 end
