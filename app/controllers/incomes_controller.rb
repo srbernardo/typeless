@@ -27,6 +27,27 @@ class IncomesController < ApplicationController
     end
   end
 
+  def edit
+    @income = Income.find(params[:id])
+  end
+
+  def update
+    @income = Income.find(params[:id])
+
+    if @income.update(income_params)
+      redirect_to incomes_path, notice: "Income was successfully updated."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @income = Income.find(params[:id])
+    @income.destroy
+
+    redirect_to incomes_path, notice: "Income was successfully deleted."
+  end
+
   private
 
   def income_params
