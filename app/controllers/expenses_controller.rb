@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-  before_action :find_expense, only: %i[show edit update]
+  before_action :find_expense, only: %i[show edit update destroy]
   def index
     @expenses = Expense.all
   end
@@ -35,6 +35,11 @@ class ExpensesController < ApplicationController
         format.html { render "edit", status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @expense.destroy
+    redirect_to expenses_path, notiice: "Expense was successfully deleted."
   end
 
   private
