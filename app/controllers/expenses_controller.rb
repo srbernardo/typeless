@@ -14,6 +14,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.user = current_user
+    @expense.ocr_hash = ocrVeryfi(@expense.photo.url)
 
     respond_to do |format|
       if @expense.save
