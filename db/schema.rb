@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_12_192957) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo"
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
@@ -78,7 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_12_192957) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo"
     t.string "first_name"
     t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
