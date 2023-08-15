@@ -37,7 +37,7 @@ class IncomesController < ApplicationController
     if @income.update(income_params)
       redirect_to incomes_path, notice: "Income was successfully updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
