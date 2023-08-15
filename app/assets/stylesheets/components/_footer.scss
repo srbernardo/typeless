@@ -1,0 +1,43 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  padding: 8px;
+  border: $medium-gray;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: $white;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    color: $primary;
+    margin-right: 8px;
+    font-size: 24px;
+    padding-right: 48px;
+
+    &:hover {
+      color: $silver
+    }
+  }
+
+
+}
+
+@media screen and (max-width: 768px) {
+  .footer ul {
+    justify-content: space-evenly;
+  }
+  li {
+    padding-right: 0px;
+  }
+}
