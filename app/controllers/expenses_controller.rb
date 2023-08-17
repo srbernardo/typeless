@@ -14,7 +14,10 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.user = current_user
-    @expense.ocr_hash = ocrVeryfi(@expense.photo.url)
+
+    unless @expense.photo.url.nil?
+      @expense.ocr_hash = ocrVeryfi(@expense.photo.url)
+    end
 
     respond_to do |format|
       if @expense.save
