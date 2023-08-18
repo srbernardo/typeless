@@ -1,10 +1,21 @@
+require 'json'
+
 class ExpensesController < ApplicationController
+  include ApplicationHelper
   before_action :find_expense, only: %i[show edit update destroy]
+
   def index
     @expenses = Expense.all
   end
 
   def show
+    unless @expense.photo.url.nil?
+      if @expense.ocr_hash.nil?
+        @expense.ocr_hash = ocr_veryfi(@expense.photo.url)
+        @expense.update(ocr_hash: @expense.ocr_hash)
+      end
+    end
+    @hash = eval(@expense.ocr_hash)
   end
 
   def new
@@ -14,11 +25,6 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.user = current_user
-
-    unless @expense.photo.url.nil?
-      @expense.ocr_hash = ocrVeryfi(@expense.photo.url)
-    end
-
     respond_to do |format|
       if @expense.save
         format.html { redirect_to root_path, notice: "Expense was successfully created." }
@@ -49,7 +55,7 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:date, :place, :description, :quantity, :unity, :value, :category, :payment_type)
+    params.require(:expense).permit(:date, :place, :description, :quantity, :unity, :value, :category, :payment_type, :photo)
   end
 
   def find_expense
