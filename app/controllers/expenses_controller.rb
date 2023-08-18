@@ -1,5 +1,3 @@
-require 'json'
-
 class ExpensesController < ApplicationController
   include ApplicationHelper
   before_action :find_expense, only: %i[show edit update destroy]
