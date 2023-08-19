@@ -1,4 +1,13 @@
 // Specific CSS for your home-page
+.dropup .hide-toggle.dropdown-toggle::after {
+  display: none !important;
+}
+
+a {
+  font-size: small;
+  text-decoration: none;
+}
+
 h1 {
   color: $medium-gray;
   font-family: $headers-font;

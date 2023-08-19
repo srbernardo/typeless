@@ -1,14 +1,17 @@
-<div class="container my-5">
-  <%= simple_form_for income do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="row justify-content-center pb-5">
+  <div class="col-lg-4 col-md-8 col-sm-12">
+    <div class="form-control">
+      <%= simple_form_for income do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <%= f.input :date, as: :date, html5: true %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :quantity %>
-    <%= f.input :value %>
-    <%= f.submit :submit, class: "btn btn-primary" %>
-
-  <% end %>
+        <%= f.input :date, as: :date, html5: true %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+        <%= f.input :quantity %>
+        <%= f.input :value %>
+        <%= f.submit :submit, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
