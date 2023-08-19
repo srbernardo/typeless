@@ -10,10 +10,20 @@ class ExpensesController < ApplicationController
     unless @expense.photo.url.nil?
       if @expense.ocr_hash.nil?
         @expense.ocr_hash = ocr_veryfi(@expense.photo.url)
-        @expense.update(ocr_hash: @expense.ocr_hash)
+        @hash = eval(@expense.ocr_hash)
+        @expense.value =  @hash["total"]
+        @expense.date = @hash["date"]
+        @expense.place =  @hash["vendor"]["name"]
+        @expense.update(
+          ocr_hash: @expense.ocr_hash,
+          value: @expense.value,
+          category: @expense.category,
+          date: @expense.date,
+          place: @expense.place,
+          payment_type: @expense.payment_type
+        )
       end
     end
-    @hash = eval(@expense.ocr_hash)
   end
 
   def new
@@ -25,7 +35,7 @@ class ExpensesController < ApplicationController
     @expense.user = current_user
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to root_path, notice: "Expense was successfully created." }
+        format.html { redirect_to expense_path(@expense), notice: "Expense was successfully created." }
       else
         format.html { render "new", status: :unprocessable_entity }
       end
