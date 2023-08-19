@@ -1,0 +1,25 @@
+<div class="expense-container">
+  <% if @expenses.empty? %>
+    <p>You don't have any expense yet</p>
+  <% else %>
+    <% @expenses.each do |expense| %>
+      <div class="notification">
+        <i class="fa-solid fa-file-invoice-dollar icon-expense"></i>
+        <div class="notification-content">
+          <p><small><%= expense.date.strftime("%d %b %Y") %></small></p>
+          <p><%= expense.place %></p>
+          <span class="category"><%= expense.category %></span>
+          <p><small><%= number_to_currency(expense.value, unit: "R$ ", separator: ",", delimiter: ".") %></small></p>
+        </div>
+        <div class="notification-actions">
+        <%= link_to edit_expense_path(expense) do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+        <%= link_to expense_path(expense), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
