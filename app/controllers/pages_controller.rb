@@ -1,6 +1,14 @@
 class PagesController < ApplicationController
   def home
+    saldo_negativo = Expense.all.pluck(:value).reduce(:+)
+    saldo_positivo = Income.all.pluck(:value).reduce(:+)
+    @saldo = saldo_positivo - saldo_negativo
     @expense = Expense.new
+    @color = "text-black"
+
+    if @saldo.negative?
+      @color = "text-danger"
+    end
   end
 
   def new
