@@ -57,13 +57,22 @@
 <div class="d-flex">
   <div class="container text-center">
     <div class="row">
-      <div class="col-12 col-md-6 card-dashboard">
+      <div class="col-12 col-md-6 card-dashboard border p-3">
+      <%= bar_chart current_user.expenses.group(:category).sum(:value) %>
       </div>
-      <div class="col card-dashboard">
+      <div class="col card-dashboard border p-3">
+        <%= pie_chart current_user.expenses.group(:category).sum(:value) %>
       </div>
     </div>
     <div class="row">
-      <div class="col card-dashboard">
+      <div class="col card-dashboard border p-3">
+          <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
+          <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
+      <%= column_chart [
+        { name: 'Expenses', data: expenses_data },
+        { name: 'Incomes', data: incomes_data }
+      ], stacked: false %>
+
       </div>
     </div>
   </div>
