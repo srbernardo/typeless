@@ -1,6 +1,14 @@
 class PagesController < ApplicationController
   def home
     @expense = Expense.new
+    saldo_negativo = Expense.where(user_id: current_user.id).pluck(:value).reduce(:+)
+    saldo_positivo = Income.where(user_id: current_user.id).pluck(:value).reduce(:+)
+
+    saldo_negativo =  0 if saldo_negativo.nil?
+    saldo_positivo =  0 if saldo_positivo.nil?
+
+    @saldo = saldo_positivo - saldo_negativo
+    @saldo.negative? ? @color = "text-danger" : @color = "text-black"
   end
 
   def new
