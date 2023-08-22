@@ -28,11 +28,11 @@
   </div>
 </div>
 
-<div class="btn-group dropup position-absolute bottom-0 end-0 mb-5 pb-4 pe-3">
+<div class="btn-group dropup position-fixed bottom-0 end-0  mb-5 pb-4 pe-3">
   <button class="border border-0 dropdown-toggle hide-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     <i class="fa-solid fa-circle-plus fa-2xl text-primary"></i>
   </button>
-  <ul class="dropdown-menu mb-3 me-1 border border-0">
+  <ul class="dropdown-menu mb-3 me-1 border border-0 bg-transparent">
     <li class="d-flex justify-content-end mt-2">
       <a class="me-2" data-bs-toggle="modal" data-bs-target="#expense" role="button">
         add expense
@@ -63,13 +63,22 @@
 <div class="d-flex">
   <div class="container text-center">
     <div class="row">
-      <div class="col-12 col-md-6 card-dashboard">
+      <div class="col-12 col-md-6 card-dashboard border p-3">
+      <%= bar_chart current_user.expenses.group(:category).sum(:value) %>
       </div>
-      <div class="col card-dashboard">
+      <div class="col card-dashboard border p-3">
+        <%= pie_chart current_user.expenses.group(:category).sum(:value) %>
       </div>
     </div>
     <div class="row">
-      <div class="col card-dashboard">
+      <div class="col card-dashboard border p-3">
+          <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
+          <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
+      <%= column_chart [
+        { name: 'Expenses', data: expenses_data },
+        { name: 'Incomes', data: incomes_data }
+      ], stacked: false %>
+
       </div>
     </div>
   </div>

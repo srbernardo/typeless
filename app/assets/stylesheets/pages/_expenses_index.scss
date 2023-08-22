@@ -1,0 +1,73 @@
+.notification {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px;
+  border: 1px solid #ebebeb;
+  min-height: 80px;
+
+  .icon-expense {
+    font-size: 2rem;
+    color: $yellow;
+  }
+
+  .notification-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+
+    .category {
+      background-color: $green;
+      font-size: 10px;
+      color: $white;
+      padding: 2px 6px;
+      height: fit-content;
+      border-radius: 10px;
+      align-self: center;
+      }
+    }
+
+    small {
+      color: #999999;
+      font-weight: bold;
+    }
+
+    .notification-content p {
+      text-align: center;
+      font-size: 12px;
+      padding: 0 8px;
+      margin-bottom: 0;
+      color: #999999;
+    }
+
+    .notification-actions a {
+      color: #999999;
+      margin-left: 12px;
+      font-size: 14px;
+    }
+
+    .notification-actions a:hover {
+      color: #555555;
+    }
+  }
+
+
+@media screen and (min-width: 768px){
+  .expense-container {
+    width: 70vw;
+    margin: 0 auto;
+  }
+  .notification {
+    padding: 0 16px;
+
+    .notification-content {
+      padding: 0 24px;
+
+      .category, p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
