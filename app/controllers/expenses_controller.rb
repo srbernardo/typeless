@@ -1,9 +1,10 @@
 class ExpensesController < ApplicationController
   include ApplicationHelper
   before_action :find_expense, only: %i[show edit update destroy]
+  before_action :set_user, only: :index
 
   def index
-    @expenses = Expense.all
+    @expenses = Expense.where(user: @user)
   end
 
   def show
@@ -19,7 +20,7 @@ class ExpensesController < ApplicationController
     respond_to do |format|
       if @expense.save
         fill_params_from_photo
-        format.html { redirect_to root_path, notice: "Expense was successfully created." }
+        format.html { redirect_to expenses_path, notice: "Expense was successfully created." }
       else
         format.html { render "new", status: :unprocessable_entity }
       end
@@ -32,7 +33,7 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update(expense_params)
-        format.html { redirect_to root_path, notice: "Expense was successfully updated." }
+        format.html { redirect_to expenses_path, notice: "Expense was successfully updated." }
       else
         format.html { render "edit", status: :unprocessable_entity }
       end
@@ -50,9 +51,9 @@ class ExpensesController < ApplicationController
     unless @expense.photo.url.nil?
       if @expense.ocr_hash.nil?
         @expense.ocr_hash = ocr_veryfi(@expense.photo.url)
-        @expense.value =  @expense.ocr_hash["total"]
+        @expense.value = @expense.ocr_hash["total"]
         @expense.date = @expense.ocr_hash["date"]
-        @expense.place =  @expense.ocr_hash["vendor"]["name"]
+        @expense.place = @expense.ocr_hash["vendor"]["name"]
         @expense.update(
           ocr_hash: @expense.ocr_hash,
           value: @expense.value,
@@ -71,5 +72,9 @@ class ExpensesController < ApplicationController
 
   def find_expense
     @expense = Expense.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 end
