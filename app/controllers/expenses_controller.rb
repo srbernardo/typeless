@@ -1,7 +1,6 @@
 class ExpensesController < ApplicationController
   include ApplicationHelper
   before_action :find_expense, only: %i[show edit update destroy]
-  before_action :fill_params_from_photo, only: %i[show]
 
   def index
     @expenses = Expense.all
@@ -19,7 +18,8 @@ class ExpensesController < ApplicationController
     @expense.user = current_user
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to expenses_path, notice: "Expense was successfully created." }
+        fill_params_from_photo
+        format.html { redirect_to root_path, notice: "Expense was successfully created." }
       else
         format.html { render "new", status: :unprocessable_entity }
       end
@@ -50,10 +50,9 @@ class ExpensesController < ApplicationController
     unless @expense.photo.url.nil?
       if @expense.ocr_hash.nil?
         @expense.ocr_hash = ocr_veryfi(@expense.photo.url)
-        @hash = eval(@expense.ocr_hash)
-        @expense.value =  @hash["total"]
-        @expense.date = @hash["date"]
-        @expense.place =  @hash["vendor"]["name"]
+        @expense.value =  @expense.ocr_hash["total"]
+        @expense.date = @expense.ocr_hash["date"]
+        @expense.place =  @expense.ocr_hash["vendor"]["name"]
         @expense.update(
           ocr_hash: @expense.ocr_hash,
           value: @expense.value,

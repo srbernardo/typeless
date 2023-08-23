@@ -17,6 +17,6 @@ module ApplicationHelper
     }.to_json
 
     response = HTTParty.post(url, headers: headers, body: payload)
-    data = JSON.parse(response.body)
+    JSON.parse(response.body)
   end
 end
