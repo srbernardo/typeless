@@ -1,15 +1,20 @@
+.expense-container {
+  padding: 0 4px 10px 4px;
+}
+
 .notification {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
   background: white;
   padding: 8px;
-  border: 1px solid #ebebeb;
-  min-height: 80px;
+  border-bottom: 1px solid #ebebeb;
+  min-height: 60px;
 
   .icon-expense {
     font-size: 2rem;
     color: $yellow;
+    padding-right: 6px;
   }
 
   .notification-content {
@@ -18,14 +23,20 @@
     align-items: center;
     flex-grow: 1;
 
-    .category {
+    .notification-category {
+      text-align: center;
+      width: 5.5rem;
       background-color: $green;
-      font-size: 10px;
       color: $white;
       padding: 2px 6px;
       height: fit-content;
       border-radius: 10px;
       align-self: center;
+      font-size: 0.8rem;
+      }
+
+      .notification-place {
+        width: 9rem;
       }
     }
 
@@ -36,8 +47,7 @@
 
     .notification-content p {
       text-align: center;
-      font-size: 12px;
-      padding: 0 8px;
+      font-size: 0.9rem;
       margin-bottom: 0;
       color: #999999;
     }
@@ -45,7 +55,7 @@
     .notification-actions a {
       color: #999999;
       margin-left: 12px;
-      font-size: 14px;
+      font-size: 0.875rem;
     }
 
     .notification-actions a:hover {
@@ -59,15 +69,15 @@
     width: 70vw;
     margin: 0 auto;
   }
-  .notification {
-    padding: 0 16px;
 
-    .notification-content {
-      padding: 0 24px;
+  .notification-content {
+    padding: 0 24px;
 
-      .category, p {
-        font-size: 1rem;
-      }
+    .notification-place {
+      width: 12.5rem;
+    }
+    .notification-category {
+      width: 6.25rem;
     }
   }
 }
