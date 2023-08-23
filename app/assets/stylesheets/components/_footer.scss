@@ -1,7 +1,7 @@
 .footer {
   position: fixed;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   padding: 8px;
   border: $medium-gray;
   border-top-left-radius: 20px;
@@ -29,8 +29,6 @@
       color: $silver
     }
   }
-
-
 }
 
 @media screen and (max-width: 768px) {
