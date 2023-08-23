@@ -27,7 +27,7 @@
     </div>
   </div>
 </div>
-<%# floating buttons %>
+<!-- Floating buttons -->
 <div class="btn-group dropup position-fixed bottom-0 end-0  mb-5 pb-4 pe-3 floating-btn">
   <button class="border border-0 dropdown-toggle hide-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     <i class="fa-solid fa-circle-plus fa-2xl text-primary"></i>
@@ -47,47 +47,43 @@
     </li>
   </ul>
 </div>
-
-<%# dashboard charts %>
-<div class="d-flex align-items-center justify-content-between mx-5">
-<span>
-
-<div class="d-flex flex-column rounded-4 shadow-sm p-3 my-2" style="background-color: #fff" >
-  <span class="fs-1 fw-bold <%= @color %> "> <%= number_to_currency(@saldo, unit: "R$ ", separator: ",", delimiter: ".") %> </span>
-  <span>Total balance from all accounts</span>
-</div>
-
-<div class="d-flex flex-column justify-content-between mx-4 mt-4">
-  <div>
-    <h1>Overview</h1>
-    <p>View all of your Income and Spendings.</p>
+<!-- dashboard charts -->
+<div class="container mt-3 mb-5 pt-3 rounded-4" style="background-color: #f4f4f4">
+  <div class="d-flex flex-column rounded-4 shadow-sm p-3 my-2" style="background-color: #fff" >
+    <span class="fs-1 fw-bold <%= @color %> "> <%= number_to_currency(@saldo, unit: "R$ ", separator: ",", delimiter: ".") %> </span>
+    <span>Total balance from all accounts</span>
   </div>
-</div>
-
-<div class="d-flex">
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-12 col-md-6 card-dashboard border">
-        <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
-        <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
-        <%= column_chart [
-          { name: 'Expenses', data: expenses_data },
-          { name: 'Incomes', data: incomes_data }
-        ], stacked: false %>
-      </div>
-      <div class="col card-dashboard border">
-        <%= pie_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data", max_width: "620px" %>
-      </div>
+  <div class="d-flex flex-column justify-content-between mx-4">
+    <div>
+      <h1>Overview</h1>
+      <p>View all of your Income and Spendings.</p>
     </div>
-    <div class="row">
-      <div class="col-12 col-md-6 card-dashboard border">
-        <%= bar_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data", max_width: "620px" %>
+  </div>
+  <div class="d-flex">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12 col-lg-6 card-dashboard border">
+          <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
+          <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
+          <%= column_chart [
+            { name: 'Expenses', data: expenses_data },
+            { name: 'Incomes', data: incomes_data }
+          ], stacked: false %>
+        </div>
+        <div class="col card-dashboard border">
+          <%= pie_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
+        </div>
       </div>
-      <div class="col card-dashboard border">
+      <div class="row">
+        <div class="col-12 col-md-6 card-dashboard border">
+          <%= bar_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
+        </div>
+        <div class="col card-dashboard border">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col card-dashboard border transactions-card">
+      <div class="row">
+        <div class="col card-dashboard border transactions-card">
+        </div>
       </div>
     </div>
   </div>
