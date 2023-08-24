@@ -16,6 +16,8 @@
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <%= yield %>
-    <%= render "shared/footer" %>
+    <% unless current_page?("/users/sign_in") || current_page?("/users/sign_up") %>
+      <%= render "shared/footer" %>
+    <% end  %>
   </body>
 </html>
