@@ -7,7 +7,6 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.1",
     "chart.js": "^4.3.3",
-    "chartkick": "^5.0.1",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
