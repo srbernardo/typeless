@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :top, only: :home
+
   def home
     @expense = Expense.new
     saldo_negativo = Expense.where(user_id: current_user.id).pluck(:value).reduce(:+)
@@ -31,5 +33,10 @@ class PagesController < ApplicationController
 
   def expense_params
     params.require(:expense).permit(:photo)
+  end
+
+  def top
+    @user = current_user
+    @top = Expense.where(user: @user).order(value: :desc).limit(5)
   end
 end

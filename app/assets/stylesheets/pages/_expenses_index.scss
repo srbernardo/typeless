@@ -5,21 +5,20 @@
 .notification {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   background: white;
   padding: 8px;
   border-bottom: 1px solid #ebebeb;
-  min-height: 60px;
 
   .icon-expense {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: $yellow;
     padding-right: 6px;
   }
 
   .notification-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-grow: 1;
 
@@ -36,18 +35,19 @@
       }
 
       .notification-place {
-        width: 9rem;
+        width: 7.2rem;
+        font-size: 0.7rem;
       }
     }
 
     small {
       color: #999999;
       font-weight: bold;
+      font-size: 0.7rem;
     }
 
     .notification-content p {
       text-align: center;
-      font-size: 0.9rem;
       margin-bottom: 0;
       color: #999999;
     }
@@ -70,14 +70,23 @@
     margin: 0 auto;
   }
 
-  .notification-content {
-    padding: 0 24px;
+  .notification {
 
-    .notification-place {
-      width: 12.5rem;
-    }
-    .notification-category {
-      width: 6.25rem;
+    .notification-content {
+      padding: 0 1.5rem;
+
+      small {
+        font-size: 0.85rem;
+      }
+
+      .notification-place {
+        width: 12rem;
+        font-size: 0.9rem;
+      }
+
+      .notification-category {
+        width: 6.25rem;
+      }
     }
   }
 }
