@@ -1,6 +1,8 @@
 class IncomesController < ApplicationController
+  before_action :set_user, only: :index
+
   def index
-    @incomes = Income.all
+    @incomes = Income.where(user: @user)
   end
 
   def show
@@ -52,5 +54,9 @@ class IncomesController < ApplicationController
 
   def income_params
     params.require(:income).permit(:date, :title, :description, :quantity, :value)
+  end
+
+  def set_user
+    @user = current_user
   end
 end
