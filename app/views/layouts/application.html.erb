@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-  <%= javascript_include_tag "chartkick" %>
     <title>Typeless</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag "favicon.png", rel: "icon", type:"image/png" %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
   </head>
   <body>
     <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
-    <%= yield %>
-    <% unless current_page?("/users/sign_in") || current_page?("/users/sign_up") %>
-      <%= render "shared/footer" %>
-    <% end  %>
+    <div class="container my-5">
+      <%= render "shared/flashes" %>
+      <%= yield %>
+    </div>
+    <%= render "shared/footer" %>
   </body>
 </html>

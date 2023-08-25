@@ -4,96 +4,63 @@
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    body {
-      background-color: #121212;
-      overflow: hidden;
-    }
+  .rails-default-error-page {
+    background-color: #EFEFEF;
+    color: #2E2F30;
+    text-align: center;
+    font-family: arial, sans-serif;
+    margin: 0;
+  }
 
-    .text {
-      color: #ddd;
-      text-align: center;
-      font-family: "Lucida Console", Monaco, monospace;
-      color: #ddd;
-      text-align: center;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 0 #888 , 4px 4px 0 #444 , 6px 6px 0 #222 ;
-    }
+  .rails-default-error-page div.dialog {
+    width: 95%;
+    max-width: 33em;
+    margin: 4em auto 0;
+  }
 
-    .status {
-      padding: 20px;
-      font-size: 14vmin;
-    }
+  .rails-default-error-page div.dialog > div {
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #BBB;
+    border-top: #B00100 solid 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    background-color: white;
+    padding: 7px 12% 0;
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  }
 
-    .message {
-      font-size: 4vmin;
-    }
+  .rails-default-error-page h1 {
+    font-size: 100%;
+    color: #730E15;
+    line-height: 1.5em;
+  }
 
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .servers {
-      display: block;
-      width: 50%;
-      height: 50%;
-      padding-left: 6vmin;
-    }
-
-    .explode {
-      display: none;
-      position: absolute;
-      width: 20%;
-    }
-
-    .servers {
-      animation: shake 0.25s;
-      animation-iteration-count: infinite;
-    }
-
-    @keyframes shake {
-        0% { transform: translate(1px, 1px) rotate(0deg); }
-        10% { transform: translate(-1px, -2px) rotate(-1deg); }
-        20% { transform: translate(-3px, 0px) rotate(1deg); }
-        30% { transform: translate(3px, 2px) rotate(0deg); }
-        40% { transform: translate(1px, -1px) rotate(1deg); }
-        50% { transform: translate(-1px, 2px) rotate(-1deg); }
-        60% { transform: translate(-3px, 1px) rotate(0deg); }
-        70% { transform: translate(3px, 1px) rotate(-1deg); }
-        80% { transform: translate(-1px, -1px) rotate(1deg); }
-        90% { transform: translate(1px, 2px) rotate(0deg); }
-        100% { transform: translate(1px, -2px) rotate(-1deg); }
-    }
+  .rails-default-error-page div.dialog > p {
+    margin: 0 0 1em;
+    padding: 1em;
+    background-color: #F7F7F7;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #999;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-color: #DADADA;
+    color: #666;
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  }
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/500.html -->
-  <div class="status text">500</div>
-  <div class="message text">Yikes!!! Something ain't right!</div>
-  <div class="container">
-    <img class="servers" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Server-multiple.svg"/>
-    <img class="explode" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Explosion-153710_icon.svg"/>
-    <img class="explode" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Explosion-153710_icon.svg"/>
-    <img class="explode" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Explosion-153710_icon.svg"/>
-    <img class="explode" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Explosion-153710_icon.svg"/>
-    <img class="explode" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Explosion-153710_icon.svg"/>
-    <img class="explode" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Explosion-153710_icon.svg"/>
+  <div class="dialog">
+    <div>
+      <h1>We're sorry, but something went wrong.</h1>
+    </div>
+    <p>If you are the application owner check the logs for more information.</p>
   </div>
-  <script>
-    const explosions = document.querySelectorAll('.explode');
-    const serverSVG = document.querySelector('.servers');
-
-    function explode(e) {
-      e.style.display = 'block';
-      let servers = serverSVG.getBoundingClientRect();
-      e.style.left = `calc(${Math.round(servers.left + (Math.random() * servers.width / 2))}px + 6vmin)`;
-      e.style.top = Math.round(servers.top + (Math.random() * servers.height / 2)) + 'px';
-      e.style.transform = `rotate(${Math.round(Math.random() * 360)}deg) scale(${0.5 + Math.random() * 0.5})`;
-      setTimeout(() => {e.style.display = 'none'}, 200);
-    }
-    setInterval(() => { explode(explosions[Math.floor(Math.random() * explosions.length)]) }, 100);
-  </script>
 </body>
 </html>

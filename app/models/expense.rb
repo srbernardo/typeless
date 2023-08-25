@@ -18,4 +18,6 @@ class Expense < ApplicationRecord
   validates :quantity, presence: true
   validates :unity, presence: true
   validates :value, presence: true
+  validates :category, inclusion: { in: CATEGORY }
+  validates :payment_type, inclusion: { in: PAYMENT_TYPE }
 end
