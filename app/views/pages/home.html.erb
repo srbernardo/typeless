@@ -66,8 +66,8 @@
           <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
           <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
           <%= column_chart [
-            { name: 'Expenses', data: expenses_data },
-            { name: 'Incomes', data: incomes_data }
+            { name: 'Expenses', data: expenses_data, color: '#FF0000'},
+            { name: 'Incomes', data: incomes_data, color: '#00FF00' }
           ], stacked: false %>
         </div>
         <div class="col card-dashboard border">

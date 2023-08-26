@@ -3,4 +3,3 @@
 //= link_tree ../../javascript .js
 //= link popper.js
 //= link bootstrap.min.js
-//= link chartkick/dist/chartkick.js
