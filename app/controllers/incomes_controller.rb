@@ -2,6 +2,7 @@ class IncomesController < ApplicationController
   before_action :set_user, only: :index
 
   def index
+    @expense = Expense.new
     @incomes = Income.where(user: @user)
   end
 
@@ -21,7 +22,7 @@ class IncomesController < ApplicationController
 
     respond_to do |format|
       if @income.save
-        format.html { redirect_to new_income_path, notice: "Income was successfully added." }
+        format.html { redirect_to incomes_path, notice: "Income was successfully added." }
         @income.save
       else
         format.html { render :new, status: :unprocessable_entity }
