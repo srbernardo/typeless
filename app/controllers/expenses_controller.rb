@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
   before_action :set_user, only: :index
 
   def index
+    @expense = Expense.new
     @expenses = Expense.where(user: @user)
   end
 
