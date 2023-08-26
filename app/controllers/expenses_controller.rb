@@ -5,6 +5,9 @@ class ExpensesController < ApplicationController
 
   def index
     @expenses = Expense.where(user: @user)
+    start_date = 7.days.ago
+    end_date = Date.today
+    @results = Expense.where(date: start_date..end_date)
   end
 
   def show
