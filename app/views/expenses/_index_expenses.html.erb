@@ -16,12 +16,12 @@
                   <p class="notification-value"><small><%= number_to_currency(expense.value, unit: "R$ ", separator: ",", delimiter: ".") %></small></p>
                 </div>
                 <div class="notification-actions">
-                <%= link_to edit_expense_path(expense) do %>
-                  <i class="fas fa-pencil-alt"></i>
-                <% end %>
-                <%= link_to expense_path(expense), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
+                  <%= link_to edit_expense_path(expense) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                  <%= link_to expense_path(expense), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
                 </div>
               </div>
             </button>
@@ -33,6 +33,14 @@
                   <div class="d-flex text-center flex-column">
                     <% expense.ocr_hash["line_items"].each do |item| %>
                       <li class="item_acordion"><%= item["text"] %></li>
+                    <% end %>
+                  </div>
+                  <div class="notification-actions-list-items">
+                    <%= link_to edit_expense_path(expense) do %>
+                      <i class="fas fa-pencil-alt"></i>
+                    <% end %>
+                    <%= link_to expense_path(expense), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                      <i class="far fa-trash-alt"></i>
                     <% end %>
                   </div>
               </div>

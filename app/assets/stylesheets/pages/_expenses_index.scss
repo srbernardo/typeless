@@ -67,6 +67,10 @@
   font-size: small;
 }
 
+.notification-actions-list-items {
+  display: none;
+}
+
 @media screen and (min-width: 768px){
   .expense-container {
     width: 70vw;
@@ -91,5 +95,20 @@
         width: 6.25rem;
       }
     }
+  }
+}
+
+@media screen and (max-width: 450px){
+  .notification-actions-list-items {
+    display: block;
+    text-align-last: right;
+
+    i {
+      color: #999999
+    }
+  }
+
+  .notification-actions {
+    display: none;
   }
 }
