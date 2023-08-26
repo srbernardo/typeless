@@ -6,11 +6,13 @@ class Expense < ApplicationRecord
   CATEGORY = [
     "restaurant",
     "groceries",
+    "transport",
     "drug store",
     "rent",
     "clothes",
     "health insurance",
-    "house maintenance"
+    "house maintenance",
+    "others"
   ]
 
   belongs_to :user
