@@ -1,60 +1,23 @@
 <div class="container mt-5">
   <h1 class="text-center">Search Results</h1>
 
-  <%= form_tag(search_path, method: "get", class: "text-center mt-3") do %>
-    <%= text_field_tag :query, params[:query], placeholder: "Search", class: "form-control" %>
-    <%= submit_tag "Search", class: "btn btn-primary mt-2" %>
-  <% end %>
+  <%= render partial: "form" %>
 
   <div class="search-results mt-4 p-3 rounded">
     <ul>
       <% if @results.any? %>
-      <% @results.each do |result| %>
-        <% if result.is_a?(Expense) %>
-          <div class="expense-container mt-4 mb-5">
-            <div class="notification">
-              <i class="fa-solid fa-file-invoice-dollar icon-expense"></i>
-              <div class="notification-content">
-                <p class="notification-date"><small><%= result.date.strftime("%d %b %Y") %></small></p>
-                <p class="notification-place"><%= result.place %></p>
-                <span class="notification-category"><%= result.category %></span>
-                <p class="notification-value"><small><%= number_to_currency(result.value, unit: "R$ ", separator: ",", delimiter: ".") %></small></p>
-              </div>
-              <div class="notification-actions">
-                <%= link_to edit_expense_path(result) do %>
-                  <i class="fas fa-pencil-alt"></i>
-                <% end %>
-                <%= link_to expense_path(result), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% elsif result.is_a?(Income) %>
-          <div class="income-container mt-4 mb-5">
-            <div class="notification">
-              <i class="fa-solid fa-money-bills icon-income"></i>
-              <div class="notification-content">
-                <p class="notification-date"><small><%= result.date.strftime("%d %b %Y") %></small></p>
-                <p class="notification-title"><%= result.title %></p>
-                <span class="notification-description"><%= result.description %></span>
-                <p class="notification-value"><small><%= number_to_currency(result.value, unit: "R$ ", separator: ",", delimiter: ".") %></small></p>
-              </div>
-              <div class="notification-actions">
-                <%= link_to edit_income_path(result) do %>
-                  <i class="fas fa-pencil-alt"></i>
-                <% end %>
-                <%= link_to income_path(result), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              </div>
-            </div>
-          </div>
+        <% @results.each do |result| %>
+          <% if result.is_a?(Expense) %>
+            <%= render partial: "expense_notification", locals: { result: result } %>
+          <% elsif result.is_a?(Income) %>
+            <%= render partial: "income_notification", locals: { result: result } %>
+          <% end %>
+          <% found_results = true %>
         <% end %>
-        <% found_results = true %>
-      <% end %>
       <% else %>
-        <p>No results found</p>
+        <% if params[:query].present? %>
+          <p>No results found</p>
+        <% end %>
       <% end %>
     </ul>
   </div>
