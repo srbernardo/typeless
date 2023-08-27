@@ -5,7 +5,7 @@
 <!-- dashboard charts -->
 <div class="container mt-3 mb-5 py-3 rounded-4" style="background-color: #f4f4f4">
   <div class="d-flex flex-column rounded-4 shadow-sm p-3 my-2" style="background-color: #fff" >
-    <span class="fs-1 fw-bold <%= @color %> "> <%= number_to_currency(@saldo, unit: "R$ ", separator: ",", delimiter: ".") %> </span>
+    <span class="fs-3 fw-bold <%= @color %> "> <%= number_to_currency(@saldo, unit: "R$ ", separator: ",", delimiter: ".") %> </span>
     <span>Total balance from all accounts</span>
   </div>
   <div class="d-flex flex-column justify-content-between mx-4">
@@ -29,13 +29,22 @@
           <%= pie_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12 col-md-6 card-dashboard border">
           <%= bar_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
         </div>
-        <div class="col card-dashboard border">
+        <div class="col card-dashboard border card-progress-bar">
+          <div class="card-info pt-5">
+            <h4>incomes: R$ 15.000,00</h4>
+            <h4>expenses: R$ 8.000,00</h4>
+          </div>
+          <div class="card-bar pb-5">
+            <div class="bar">
+              <div class="progress"></div>
+            </div>
+            <p>you have spent 53% of your incomes this month</p>
+          </div>
         </div>
-      </div>
       <div class="row">
         <div class="col card-dashboard border transactions-card">
           <h5>Your top 5 expenses</h5>
