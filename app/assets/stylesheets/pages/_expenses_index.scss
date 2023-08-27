@@ -8,7 +8,7 @@
   margin-bottom: 4px;
   background: white;
   padding: 8px;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid $light-gray;
 
   .icon-expense {
     font-size: 1.8rem;
@@ -25,7 +25,7 @@
     .notification-category {
       text-align: center;
       width: 5.5rem;
-      background-color: $green;
+      background-color: $green-pool;
       color: $white;
       padding: 2px 6px;
       height: fit-content;
@@ -41,7 +41,7 @@
     }
 
     small {
-      color: #999999;
+      color: $medium-gray;
       font-weight: bold;
       font-size: 0.7rem;
     }
@@ -49,17 +49,17 @@
     .notification-content p {
       text-align: center;
       margin-bottom: 0;
-      color: #999999;
+      color: $medium-gray;
     }
 
     .notification-actions a {
-      color: #999999;
+      color: $medium-gray;
       margin-left: 12px;
       font-size: 0.875rem;
     }
 
     .notification-actions a:hover {
-      color: #555555;
+      color: $gray;
     }
   }
 
@@ -104,7 +104,7 @@
     text-align-last: right;
 
     i {
-      color: #999999
+      color: $medium-gray
     }
   }
 
