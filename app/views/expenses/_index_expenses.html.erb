@@ -4,10 +4,10 @@
   <% else %>
     <% expenses.each do |expense| %>
       <div class="accordion" id="accordionExpenses">
-        <div class="accordion-item">
+        <div class="accordion-item" style="border: none;">
           <div class="accordion-header">
             <button class="container bg-white border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#<%= expense.id %>" aria-expanded="true" aria-controls="<%= expense.id %>">
-              <div class="notification border border-0">
+              <div class="notification">
                 <i class="fa-solid fa-file-invoice-dollar icon-expense"></i>
                 <div class="notification-content">
                   <p class="notification-date"><small><%= expense.date.strftime("%d %b %Y") %></small></p>

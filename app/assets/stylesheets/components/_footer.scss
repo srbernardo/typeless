@@ -1,11 +1,10 @@
 .footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  width: 100vw;
   padding: 8px;
   border: $medium-gray;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 16px;
   background-color: $white;
 
