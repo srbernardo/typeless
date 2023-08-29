@@ -1,0 +1,39 @@
+.card-progress-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .card-info{
+    margin-bottom: 1.5rem;
+    text-align: start;
+  }
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    padding-bottom: .5rem;
+    color: $medium-gray;
+  }
+
+  p {
+    color: $medium-gray;
+    font-size: .9rem;
+  }
+
+  .bar {
+    height: 1.8rem;
+    border-radius: .5rem;
+    border: 1px solid $silver;
+    overflow: hidden;
+    position: relative;
+
+    .progress {
+      height: 100%;
+      line-height: 30px;
+      position: absolute;
+      text-align: end;
+      padding-right: 5px;
+      background: #4065c5;
+    }
+  }
+}
