@@ -6,7 +6,6 @@
 
   .search-form {
     display: flex;
-    width: 40%;
 
     .search-btn {
       border-top-right-radius: .9rem;
@@ -21,5 +20,11 @@
     .search-input::placeholder {
       color: $silver
     }
+  }
+}
+
+@media screen and (min-width: 510px) {
+  .search-form {
+    width: 40%;
   }
 }
