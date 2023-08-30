@@ -16,6 +16,7 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
+    <div data-controller="popover"></div>
     <%= yield %>
     <% unless current_page?("/users/sign_in") || current_page?("/users/sign_up") %>
       <%= render "shared/footer" %>
