@@ -1,0 +1,25 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.5rem auto;
+
+  .search-form {
+    display: flex;
+    width: 40%;
+
+    .search-btn {
+      border-top-right-radius: .9rem;
+      border-bottom-right-radius: .9rem;
+    }
+
+    .search-input {
+      border-top-left-radius: .9rem;
+      border-bottom-left-radius: .9rem;
+    }
+
+    .search-input::placeholder {
+      color: $silver
+    }
+  }
+}
