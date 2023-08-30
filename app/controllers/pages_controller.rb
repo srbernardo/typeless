@@ -7,8 +7,11 @@ class PagesController < ApplicationController
   def home
     @balance = @earnings - @spendings
     @balance.negative? ? @color = "text-danger" : @color = "text-black"
-
-    @percentage = ((@spendings / @earnings) * 100).round
+    if @earnings == 0
+      @percentage = ((@spendings / 1) * 100).round
+    else
+      @percentage = ((@spendings / @earnings) * 100).round
+    end
   end
 
   def new
