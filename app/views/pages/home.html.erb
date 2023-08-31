@@ -16,6 +16,9 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-12 col-lg-6 card-dashboard border">
+          <p class="fs-4 mt-2 mb-0 fw-smibold text-body-tertiary" >
+            Incomes and expenses comparison
+          </p>
           <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
           <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
           <%= column_chart [
@@ -24,11 +27,17 @@
           ], stacked: false %>
         </div>
         <div class="col card-dashboard border">
+          <p class="fs-4 mt-2 mb-0 fw-smibold text-body-tertiary" >
+            Percentage of expenses by categories
+          </p>
           <%= pie_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-12 col-md-6 card-dashboard border">
+          <p class="fs-4 mt-2 mb-0 fw-smibold text-body-tertiary" >
+            Ranking of expenses
+          </p>
           <%= bar_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
         </div>
         <div class="col card-dashboard border card-progress-bar">
