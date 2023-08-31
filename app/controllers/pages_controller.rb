@@ -6,7 +6,13 @@ class PagesController < ApplicationController
 
   def home
     @balance = @earnings - @spendings
-    @balance.negative? ? @color = "text-danger" : @color = "text-black"
+    if @balance == 0
+      @color = "text-dark"
+    elsif @balance.negative?
+      @color = "text-danger"
+    else
+      @color = "text-success"
+    end
     return if @earnings.zero?
 
     @percentage = ((@spendings / @earnings) * 100).round
