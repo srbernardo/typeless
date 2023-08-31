@@ -1,7 +1,9 @@
 <!-- Search form -->
 <%= render partial: "search/form" %>
 <!-- List of expenses -->
-<%= render 'index_expenses', expenses: @expenses %>
+<div class="pb-5">
+  <%= render 'index_expenses', expenses: @expenses %>
+</div>
 <!-- Modal -->
 <%= render "pages/modal", expense: @expense %>
 <!-- Floating buttons -->
