@@ -45,7 +45,13 @@
               <div class="progress"
               style="width:<%=@percentage%>%; background: <%=@percentage.to_i > 80 ? "#a93a35" : "#4065c5"%>"></div>
             </div>
-            <p>you have spent <%= @percentage.to_i > 100 ? "#{@percentage -100}% on top of your income" : "#{@percentage}% of your income" %></p>
+            <% if @percentage.nil? %>
+            <p>There is no income information yet 😕</p>
+            <% elsif @percentage.to_i > 100  %>
+            <%= "you have spent #{@percentage - 100}% on top of your income" %>
+            <% else %>
+            <%= "you have spent #{@percentage}% of your income" %>
+            <% end %>
           </div>
         </div>
       <div class="row">
