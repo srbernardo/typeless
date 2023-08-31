@@ -16,12 +16,12 @@
             <p class="notification-value"><small><%= number_to_currency(income.value, unit: "R$ ", separator: ",", delimiter: ".") %></small></p>
           </div>
           <div class="notification-actions">
-          <%= link_to edit_income_path(income) do %>
-            <i class="fas fa-pencil-alt"></i>
-          <% end %>
-          <%= link_to income_path(income), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-            <i class="far fa-trash-alt"></i>
-          <% end %>
+            <%= link_to edit_income_path(income) do %>
+              <i class="fas fa-pencil-alt text-primary"></i>
+            <% end %>
+            <%= link_to income_path(income), data:{ turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+              <i class="far fa-trash-alt text-danger"></i>
+            <% end %>
           </div>
         </div>
     <% end %>

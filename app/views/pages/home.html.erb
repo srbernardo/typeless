@@ -6,7 +6,14 @@
     <span class="fs-3 fw-bold <%= @color %> "> <%= number_to_currency(@balance, unit: "R$ ", separator: ",", delimiter: ".") %> </span>
     <span>Total balance from all accounts</span>
   </div>
-  <div class="d-flex flex-column justify-content-between mx-4">
+
+  <% if @earnings == 0 && @spendings == 0 %>
+    <div class="container text-center rounded-4 shadow-sm", style="background-color: #fff" >
+      <%= image_tag "no_date.jpg", height: 335, width: 335 %>
+      <p class="lh-1 fs-1 fw-bold text-secondary">No data found</p>
+      <p class="pb-5">Add an expense or income with the floating button</p>
+    </div>
+  <% else %>
     <div>
       <h1>Overview</h1>
       <p>View all of your Income and Spendings.</p>
@@ -58,12 +65,7 @@
             <% end %>
           </div>
         </div>
-      <div class="row">
-        <div class="col card-dashboard border transactions-card">
-          <h5>Your top 5 expenses</h5>
-          <%= render 'expenses/index_expenses', expenses: @top %>
-        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
