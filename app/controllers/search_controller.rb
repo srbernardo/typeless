@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   def index
+    @expense = Expense.new
     @results = search(params[:query], current_user)
   end
 

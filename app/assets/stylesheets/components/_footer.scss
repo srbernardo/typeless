@@ -8,33 +8,36 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 16px;
   background-color: $white;
 
-  ul {
+  .list {
     display: flex;
     justify-content: center;
     margin: 0;
   }
 
-  li {
+  .item {
     list-style-type: none;
+    margin: 0 24px;
   }
 
-  a {
-    color: $primary;
-    margin-right: 8px;
+  .link {
+    color: $secondary;
     font-size: 24px;
-    padding-right: 48px;
 
     &:hover {
-      color: $silver
+      color: $blue-sky;
     }
+  }
+
+  .add {
+    position: relative;
+    top: -12px;
+    font-size: x-large;
+    color: $primary;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .footer ul {
-    justify-content: space-evenly;
-  }
-  li {
-    padding-right: 0px;
+  .list {
+    padding: 0px;
   }
 }
