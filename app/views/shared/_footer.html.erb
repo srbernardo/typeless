@@ -25,3 +25,7 @@
     </li>
   </ul>
 </div>
+<!-- Modal -->
+<% if @expense %>
+  <%= render "pages/modal", expense: @expense %>
+<% end %>
