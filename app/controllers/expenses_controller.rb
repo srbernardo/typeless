@@ -49,22 +49,15 @@ class ExpensesController < ApplicationController
   private
 
   def fill_params_from_photo
-    unless @expense.photo.url.nil?
-      if @expense.ocr_hash.nil?
-        @expense.ocr_hash = ocr_veryfi(@expense.photo.url)
-        @expense.value = @expense.ocr_hash["total"]
-        @expense.date = @expense.ocr_hash["date"]
-        @expense.place = @expense.ocr_hash["vendor"]["name"]
-        @expense.update(
-          ocr_hash: @expense.ocr_hash,
-          value: @expense.value,
-          category: @expense.category,
-          date: @expense.date,
-          place: @expense.place,
-          payment_type: @expense.payment_type
-        )
-      end
-    end
+    return if @expense.photo.url.nil? || @expense.ocr_hash.present?
+
+    ocr_hash = ocr_veryfi(@expense.photo.url)
+    @expense.update(
+      ocr_hash: ocr_hash,
+      value: ocr_hash["total"],
+      date: ocr_hash["date"],
+      place: ocr_hash["vendor"]["name"]
+    )
   end
 
   def expense_params
