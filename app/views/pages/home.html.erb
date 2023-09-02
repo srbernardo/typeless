@@ -25,9 +25,9 @@
             <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
             <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
             <%= column_chart [
-            { name: 'Expenses', data: expenses_data, color: '#FF0000'},
-            { name: 'Income', data: incomes_data, color: '#00FF00' }
-          ], stacked: false %>
+            { name: 'Expenses', data: expenses_data},
+            { name: 'Income', data: incomes_data}
+          ], stacked: false, colors: ["AB1B1B", "#4065c5"] %>
           </div>
           <div class="col card-dashboard border">
             <h5>Expenses by categories</h5>
@@ -38,7 +38,7 @@
         <div class="row justify-content-center">
           <div class="col-12 col-md-6 card-dashboard border">
             <h5>Ranking of expenses</h5>
-            <%= bar_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
+            <%= bar_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data", colors: ["#4065c5"] %>
           </div>
           <div class="col card-dashboard border card-progress-bar">
             <h5>Tracking expenses by your income</h5>
