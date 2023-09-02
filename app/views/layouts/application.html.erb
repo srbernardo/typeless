@@ -3,9 +3,16 @@
   <head>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag "chartkick" %>
-    <title>Typeless - A handy way of organizing your finances</title>
+  <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Typeless is an app that helps you organize your finances practically and easily by just uploading a photo from a receipt and 'Puff' that's it.">
     <meta name="keywords" content="finance, ocr, expense, control, receipt, budget, personal budget">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
