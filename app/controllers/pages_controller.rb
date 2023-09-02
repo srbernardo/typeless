@@ -29,6 +29,7 @@ class PagesController < ApplicationController
         format.html { redirect_to root_path, notice: "Expense was successfully created." }
       else
         format.html { render "new", status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end
