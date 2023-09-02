@@ -1,6 +1,6 @@
 class Expense < ApplicationRecord
   include PgSearch::Model
-  pg_search_scope :search_all_fields, against: [:description, :place, :category, :payment_type],
+  pg_search_scope :search_all_fields, against: [:description, :place, :category, :payment_type, :value],
   using: { tsearch: { prefix: true } }
   PAYMENT_TYPE = ["cash", "credit card", "debit card", "pix"]
   CATEGORY = [
