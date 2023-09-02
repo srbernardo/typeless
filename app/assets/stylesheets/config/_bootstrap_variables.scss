@@ -11,9 +11,9 @@ $body-bg:                $light-gray;
 $font-size-base:         1rem;
 
 // Colors
-$body-color: $gray;
+$body-color: $dark-gray;
 $primary:    $blue;
-$success:    $green;
+$success:    $green-pool;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
@@ -26,3 +26,4 @@ $border-radius-sm: 2px;
 // Override other variables below!
 
 $navbar-light-toggler-border-color: transparent;
+$accordion-border-color: transparent;

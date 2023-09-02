@@ -4,6 +4,7 @@ class IncomesController < ApplicationController
   def index
     @days = params[:days]&.to_i || 7
     @incomes = current_user.incomes.where(date: @days.days.ago..Date.today).order(:date)
+    @expense = Expense.new
   end
 
   def show
@@ -22,7 +23,7 @@ class IncomesController < ApplicationController
 
     respond_to do |format|
       if @income.save
-        format.html { redirect_to new_income_path, notice: "Income was successfully added." }
+        format.html { redirect_to incomes_path, notice: "Income was successfully added." }
         @income.save
       else
         format.html { render :new, status: :unprocessable_entity }

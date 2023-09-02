@@ -1,21 +1,26 @@
 class PagesController < ApplicationController
   before_action :top, only: :home
+  before_action :new_expense, only: %i[home new]
+  before_action :filter_earnings, only: :home
+  before_action :filter_spendings, only: :home
 
   def home
-    @expense = Expense.new
-    saldo_negativo = Expense.where(user_id: current_user.id).pluck(:value).reduce(:+)
-    saldo_positivo = Income.where(user_id: current_user.id).pluck(:value).reduce(:+)
-
-    saldo_negativo =  0 if saldo_negativo.nil?
-    saldo_positivo =  0 if saldo_positivo.nil?
-
-    @saldo = saldo_positivo - saldo_negativo
-    @saldo.negative? ? @color = "text-danger" : @color = "text-black"
+    @balance = @earnings - @spendings
+    if @balance == 0
+      @color = "text-dark"
+    elsif @balance.negative?
+      @color = "text-danger"
+    else
+      @color = "text-success"
+    end
     @days = params[:days]&.to_i || false
+
+    return if @earnings.zero?
+
+    @percentage = ((@spendings / @earnings) * 100).round
   end
 
   def new
-    @expense = Expense.new
   end
 
   def create
@@ -39,5 +44,19 @@ class PagesController < ApplicationController
   def top
     @user = current_user
     @top = Expense.where(user: @user).order(value: :desc).limit(5)
+  end
+
+  def new_expense
+    @expense = Expense.new
+  end
+
+  def filter_earnings
+    @earnings = Income.where(user_id: current_user.id).pluck(:value).reduce(:+)
+    @earnings = 0 if @earnings.nil?
+  end
+
+  def filter_spendings
+    @spendings = Expense.where(user_id: current_user.id).pluck(:value).reduce(:+)
+    @spendings = 0 if @spendings.nil?
   end
 end

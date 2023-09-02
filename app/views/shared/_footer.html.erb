@@ -1,24 +1,31 @@
 <div class="footer">
-  <ul>
-    <li>
-      <%= link_to root_path do%>
+  <ul class="list">
+    <li class="item">
+      <%= link_to root_path, class: "link" do%>
         <i class="fa-solid fa-gauge"></i>
       <% end %>
     </li>
-    <li>
-      <%= link_to expenses_path do%>
+    <li class="item">
+      <%= link_to expenses_path, class: "link" do%>
         <i class="fa-solid fa-receipt"></i>
       <% end %>
     </li>
-    <li>
-      <%= link_to incomes_path do%>
+    <li class="item add">
+      <%= render "/shared/floating_button" %>
+    </li>
+    <li class="item">
+      <%= link_to incomes_path, class: "link" do%>
         <i class="fa-solid fa-money-bill-wave"></i>
       <% end %>
     </li>
-    <li>
-      <%= link_to edit_user_registration_path do%>
+    <li class="item">
+      <%= link_to search_path, class: "link" do%>
         <i class="fa-solid fa-magnifying-glass"></i>
       <% end %>
     </li>
   </ul>
 </div>
+<!-- Modal -->
+<% if @expense %>
+  <%= render "pages/modal", expense: @expense %>
+<% end %>
