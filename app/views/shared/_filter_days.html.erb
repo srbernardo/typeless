@@ -1,0 +1,35 @@
+<%
+  seven= "-outline"
+  fourteen= "-outline"
+  thirty = "-outline"
+  if days == 7
+    seven = ""
+  elsif days == 14
+    fourteen = ""
+  elsif days == 30
+    thirty = ""
+  end
+%>
+
+<div class="w-100 d-flex justify-content-end ">
+  <div class="mt-4 bg-white border rounded-5 me-3 p-1">
+
+    <%= link_to "#{current_path}?days=7" do %>
+      <label class="btn btn<%=seven%>-dark btn-sm border-0 rounded-4" for="btnradio1">7 days</label>
+    <% end %>
+
+
+    <%= link_to "#{current_path}?days=14" do %>
+      <label class="btn btn<%=fourteen%>-dark btn-sm border-0 rounded-4" for="btnradio2">14 days</label>
+    <% end %>
+
+
+    <%= link_to "#{current_path}?days=30" do %>
+      <label class="btn btn<%=thirty%>-dark btn-sm border-0 rounded-4" for="btnradio2">30 days</label>
+    <% end %>
+
+    <%= link_to root_path do %>
+      <label class="btn btn-outline-dark btn-sm border-0 rounded-4"><i class="fa-regular fa-calendar-days"></i></label>
+    <% end %>
+  </div>
+</div>
