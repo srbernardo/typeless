@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-  <%= javascript_include_tag "chartkick" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= javascript_include_tag "chartkick" %>
     <title>Typeless - Finance organization control in a practical way</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Typeless is an app that will help you organize your finances in a practical way and easy way by just taking a photo of your expense coupon and 'Puuf' that's it">
@@ -20,6 +20,6 @@
     <%= yield %>
     <% unless current_page?("/users/sign_in") || current_page?("/users/sign_up") %>
       <%= render "shared/footer" %>
-    <% end  %>
+    <% end %>
   </body>
 </html>
