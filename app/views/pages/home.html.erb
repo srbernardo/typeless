@@ -60,6 +60,13 @@
             </div>
           </div>
         </div>
+        <!-- Third row -->
+        <div class="row">
+          <div class="col card-dashboard border transactions-card">
+            <h5>Your top 5 expenses</h5>
+            <%= render 'expenses/index_expenses', expenses: @top %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
