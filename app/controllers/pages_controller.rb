@@ -11,6 +11,7 @@ class PagesController < ApplicationController
 
     @saldo = saldo_positivo - saldo_negativo
     @saldo.negative? ? @color = "text-danger" : @color = "text-black"
+    @days = params[:days]&.to_i || false
   end
 
   def new

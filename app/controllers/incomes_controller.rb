@@ -2,7 +2,8 @@ class IncomesController < ApplicationController
   before_action :set_user, only: :index
 
   def index
-    @incomes = Income.where(user: @user)
+    @days = params[:days]&.to_i || 7
+    @incomes = current_user.incomes.where(date: @days.days.ago..Date.today).order(:date)
   end
 
   def show
