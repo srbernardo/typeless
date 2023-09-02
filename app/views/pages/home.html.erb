@@ -1,3 +1,5 @@
+<!-- Filter days -->
+<%= render  "/shared/filter_days", current_path: request.path, days: @days%>
 <!-- Modal -->
 <div class="modal fade" id="expense" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -61,26 +63,7 @@
   </div>
   <div class="d-flex">
     <div class="container text-center">
-      <div class="row">
-        <div class="col-12 col-lg-6 card-dashboard border">
-          <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
-          <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
-          <%= column_chart [
-            { name: 'Expenses', data: expenses_data },
-            { name: 'Incomes', data: incomes_data }
-          ], stacked: false %>
-        </div>
-        <div class="col card-dashboard border">
-          <%= pie_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-6 card-dashboard border">
-          <%= bar_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
-        </div>
-        <div class="col card-dashboard border">
-        </div>
-      </div>
+      <%= render "charts", incomes: @incomes, expenses: @expenses, days: @days %>
       <div class="row">
         <div class="col card-dashboard border transactions-card">
           <h5>Your top 5 expenses</h5>
