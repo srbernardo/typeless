@@ -1,6 +1,5 @@
-<!-- Modal -->
-<%= render "modal", expense: @expense %>
-
+<!-- Filter days -->
+<%= render "/shared/filter_days", current_path: request.path, days: @days%>
 <div class="container mt-3 mb-5 py-3 rounded-4" style="background-color: #f4f4f4">
   <div class="d-flex flex-column rounded-4 shadow-sm p-3 my-2" style="background-color: #fff" >
     <span class="fs-3 fw-bold <%= @color %> "> <%= number_to_currency(@balance, unit: "R$ ", separator: ",", delimiter: ".") %> </span>
@@ -19,48 +18,8 @@
     </div>
     <div class="d-flex">
       <div class="container text-center">
-        <!-- First Row -->
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-6 card-dashboard border">
-            <h5> Income and expenses by month </h5>
-            <% incomes_data = current_user.incomes.group_by_month(:date, format: "%b %Y").sum(:value) %>
-            <% expenses_data = current_user.expenses.group_by_month(:date, format: "%b %Y").sum(:value) %>
-            <%= column_chart [
-              { name: 'Expenses', data: expenses_data},
-              { name: 'Income', data: incomes_data}
-            ], stacked: false, colors: ["AB1B1B", "#4065c5"] %>
-          </div>
-          <div class="col card-dashboard border">
-            <h5>Expenses by categories</h5>
-            <%= pie_chart current_user.expenses.group(:category).sum(:value), loading: "Loading...", empty: "No data" %>
-          </div>
-        </div>
-        <!-- Second Row -->
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-6 card-dashboard border">
-            <h5>Ranking of expenses</h5>
-            <%= bar_chart current_user.expenses.group(:category).sum(:value).sort_by{|k,v| v}.reverse, loading: "Loading...", empty: "No data", colors: ["#4065c5"] %>
-          </div>
-          <div class="col card-dashboard border card-progress-bar">
-            <h5>Tracking expenses by your income</h5>
-            <div class="card-info pt-5 px-5">
-              <p>earnings: <%= number_to_currency(@earnings, unit: "R$ ", separator: ",", delimiter: ".") %></p>
-              <p>expenses: <%= number_to_currency(@spendings, unit: "R$ ", separator: ",", delimiter: ".") %></p>
-            </div>
-            <div class="card-bar pb-5 px-5">
-              <div class="bar">
-                <div class="progress" style="width:<%=@percentage%>%; background: <%=@percentage.to_i > 80 ? "#a93a35" : "#4065c5"%>"></div>
-              </div>
-              <% if @percentage.nil? %>
-                <p>There is no income information yet 😕</p>
-              <% elsif @percentage.to_i > 100  %>
-                <%= "you spent #{@percentage - 100}% more than your income" %>
-              <% else %>
-                <%= "you have spent #{@percentage}% of your income" %>
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <!-- Charts -->
+        <%= render "charts", days: @days %>
         <!-- Third row -->
         <div class="row justify-content-center">
           <div class="col card-dashboard border transactions-card">

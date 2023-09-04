@@ -2,8 +2,9 @@ class IncomesController < ApplicationController
   before_action :set_user, only: :index
 
   def index
+    @days = params[:days]&.to_i || 7
+    @incomes = current_user.incomes.where(date: @days.days.ago..Date.today).order(:date)
     @expense = Expense.new
-    @incomes = Income.where(user: @user)
   end
 
   def show
@@ -26,6 +27,7 @@ class IncomesController < ApplicationController
         @income.save
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end

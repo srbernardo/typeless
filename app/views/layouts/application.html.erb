@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-    <%= javascript_include_tag "chartkick" %>
-  <title><%= meta_title %></title>
+    <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title %>" />
@@ -18,6 +16,8 @@
     <%= csp_meta_tag %>
     <%= favicon_link_tag "favicon.png", rel: "icon", type:"image/png" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "chartkick" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
   </head>
   <body>
@@ -25,6 +25,7 @@
     <%= render "shared/flashes" %>
     <div data-controller="popover"></div>
     <%= yield %>
+    <%= turbo_frame_tag "remote_modal", target: "_top" %>
     <% unless current_page?("/users/sign_in") || current_page?("/users/sign_up") %>
       <%= render "shared/footer" %>
     <% end %>

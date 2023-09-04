@@ -4,8 +4,9 @@ class ExpensesController < ApplicationController
   before_action :set_user, only: :index
 
   def index
+    @days = params[:days]&.to_i || 7
+    @expenses = current_user.expenses.where(date: @days.days.ago..Date.today).order(:date)
     @expense = Expense.new
-    @expenses = Expense.where(user: @user)
   end
 
   def show
@@ -24,6 +25,7 @@ class ExpensesController < ApplicationController
         format.html { redirect_to expenses_path, notice: "Expense was successfully created." }
       else
         format.html { render "new", status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end
