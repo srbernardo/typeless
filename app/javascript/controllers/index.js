@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import PopoverController from "./popover_controller"
 application.register("popover", PopoverController)
+
+import RemoteModalController from "./remote_modal_controller"
+application.register("remote-modal", RemoteModalController)

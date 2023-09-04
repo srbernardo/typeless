@@ -4,22 +4,22 @@
   </button>
   <ul class="dropdown-menu mb-2 border border-0 shadow bg-white p-3 rounded-4 menu">
     <li class="d-flex mt-2">
-      <a class="me-2" data-bs-toggle="modal" data-bs-target="#expense" role="button">
+      <%= link_to new_pages_path, data: { turbo_frame: "remote_modal" } do%>
         <i class="fa-solid fa-money-bill-wave fa-xl" style="color: #6ed7b7;"></i>
         add expense by photo
-      </a>
+      <% end %>
     </li>
     <li class="d-flex mt-2">
-      <a href="<%= new_expense_path %>" class="me-2">
+      <%= link_to new_expense_path, data: { turbo_frame: "remote_modal" } do %>
         <i class="fa-solid fa-money-bill-wave fa-xl" style="color: #6ed7b7;"></i>
-        add expense
-      </a>
+        add expense manually
+      <% end %>
     </li>
     <li class="d-flex mt-2">
-      <a href="<%= new_income_path %>" class="me-2">
+      <%= link_to new_income_path, data: { turbo_frame: "remote_modal" } do%>
         <i class="fa-solid fa-receipt fa-xl pe-1" style="color: #E67E22;"></i>
         add income
-      </a>
+      <% end %>
     </li>
   </ul>
 </div>
