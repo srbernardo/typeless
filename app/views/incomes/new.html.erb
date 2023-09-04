@@ -1,7 +1,7 @@
 <div class="container my-5 pb-4">
-  <h1>New Income</h1>
-
-  <%= render "form", income: @income %>
+  <%= render "shared/remote_modal", title: "New Income" do %>
+    <%= render "form", income: @income %>
+  <% end %>
   <%= link_to incomes_path, style:"text-decoration: none" do %>
     <i class="fa-solid fa-reply-all"></i>
   <% end %>

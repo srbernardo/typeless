@@ -25,6 +25,7 @@
     <%= render "shared/flashes" %>
     <div data-controller="popover"></div>
     <%= yield %>
+    <%= turbo_frame_tag "remote_modal", target: "_top" %>
     <% unless current_page?("/users/sign_in") || current_page?("/users/sign_up") %>
       <%= render "shared/footer" %>
     <% end %>

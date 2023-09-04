@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :expenses
   resources :incomes
-  get "", to: "pages#new"
+  get "new", to: "pages#new", as: :new_pages
   post "", to: "pages#create"
 end
