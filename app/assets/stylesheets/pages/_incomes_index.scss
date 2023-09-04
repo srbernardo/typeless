@@ -1,7 +1,3 @@
-.income-container {
-  padding: 0 4px 10px 4px;
-}
-
 .notification {
   display: flex;
   align-items: center;
@@ -78,12 +74,12 @@
         font-size: 0.85rem;
       }
 
-      .notification-place {
+      .notification-title {
         width: 12rem;
         font-size: 0.9rem;
       }
 
-      .notification-category {
+      .notification-description {
         width: 6.25rem;
       }
     }
