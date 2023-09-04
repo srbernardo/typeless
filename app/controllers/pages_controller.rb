@@ -13,6 +13,8 @@ class PagesController < ApplicationController
     else
       @color = "text-success"
     end
+    @days = params[:days]&.to_i || false
+
     return if @earnings.zero?
 
     @percentage = ((@spendings / @earnings) * 100).round
