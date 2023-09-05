@@ -62,7 +62,6 @@
     }
   }
 
-
 @media screen and (min-width: 768px){
   .income-container {
     width: 70vw;
@@ -70,7 +69,6 @@
   }
 
   .notification {
-
     .notification-content {
       padding: 0 1.5rem;
 
@@ -87,5 +85,11 @@
         width: 6.25rem;
       }
     }
+  }
+
+  .filter-date {
+    width: 70vw;
+    margin: 0 auto;
+    padding-right: 1.5rem;
   }
 }

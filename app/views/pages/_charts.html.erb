@@ -7,29 +7,24 @@
   <% expenses_data = current_user.expenses.where(date: Date.today - 365..Date.today).group_by_month(:date, format: "%b %Y", reverse: true).sum(:value)%>
   <% expenses = current_user.expenses.where(date: Date.today - 365..Date.today).group(:category).sum(:value)%>
 <% end %>
-
 <!-- First Row -->
-<div class="row">
-  <div class="col-12 col-lg-6 card-dashboard border">
-    <h5> Income and expenses by month </h5>
+<div class="card-grid">
+  <div class="card-dashboard border">
+    <h5>Income and expenses by period</h5>
     <%= column_chart [
       { name: 'Expenses', data: expenses_data},
       { name: 'Income', data: incomes_data}
     ], stacked: false, colors: ["AB1B1B", "#4065c5"] %>
   </div>
-  <div class="col card-dashboard border">
+  <div class="card-dashboard border">
     <h5>Expenses by categories</h5>
     <%= pie_chart expenses %>
   </div>
-</div>
-
-<!-- Second Row -->
-<div class="row justify-content-center">
-  <div class="col-12 col-md-6 card-dashboard border">
+  <div class="card-dashboard border">
     <h5>Ranking of expenses</h5>
     <%= bar_chart expenses.sort_by{|k,v| v}.reverse, loading: "Loading...", empty: "No data", colors: ["#4065c5"] %>
   </div>
-  <div class="col card-dashboard border card-progress-bar">
+  <div class="card-dashboard border card-progress-bar">
     <h5>Tracking expenses by your income</h5>
     <div class="card-info pt-5 px-5">
       <p>earnings: <%= number_to_currency(@earnings, unit: "R$ ", separator: ",", delimiter: ".") %></p>
