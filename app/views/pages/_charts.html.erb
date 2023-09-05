@@ -7,11 +7,10 @@
   <% expenses_data = current_user.expenses.where(date: Date.today - 365..Date.today).group_by_month(:date, format: "%b %Y", reverse: true).sum(:value)%>
   <% expenses = current_user.expenses.where(date: Date.today - 365..Date.today).group(:category).sum(:value)%>
 <% end %>
-
 <!-- First Row -->
 <div class="row">
   <div class="col-12 col-lg-6 card-dashboard border">
-    <h5> Income and expenses by month </h5>
+    <h5>Income and expenses by period</h5>
     <%= column_chart [
       { name: 'Expenses', data: expenses_data},
       { name: 'Income', data: incomes_data}
@@ -22,7 +21,6 @@
     <%= pie_chart expenses %>
   </div>
 </div>
-
 <!-- Second Row -->
 <div class="row justify-content-center">
   <div class="col-12 col-md-6 card-dashboard border">
