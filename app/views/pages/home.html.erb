@@ -11,7 +11,7 @@
     </div>
   <% else %>
     <div class="ms-2 container-overview-date">
-      <div>
+      <div class="overview-title">
         <h1>Overview</h1>
         <p>View all of your Income and Spendings.</p>
       </div>
@@ -23,11 +23,9 @@
         <!-- Charts -->
         <%= render "charts", days: @days %>
         <!-- Third row -->
-        <div class="row">
-          <div class="col card-dashboard border transactions-card">
-            <h5>Your top 5 expenses</h5>
-            <%= render 'expenses/index_expenses', expenses: @top %>
-          </div>
+        <div class="card-dashboard border transactions-card">
+          <h5>Your top 5 expenses</h5>
+          <%= render 'expenses/index_expenses', expenses: @top %>
         </div>
       </div>
     <% end %>

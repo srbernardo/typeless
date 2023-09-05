@@ -2,12 +2,25 @@
 .dropup .hide-toggle.dropdown-toggle::after {
   display: none !important;
 }
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
 
 .card-dashboard {
   background-color: $white;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.15);
-  margin: 4px;
+  overflow: hidden;
+}
+
+.transactions-card {
+  margin-top: 16px;
+}
+
+.overview-title {
+  width: 100%;
 }
 
 h1 {
@@ -37,13 +50,22 @@ a {
 }
 
 .filter-date {
+  margin-right: 16px;
   height: fit-content;
 }
 
 @media screen and (min-width: 770px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .container-overview-date {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.overview-title {
+  width: 60%;
 }
   }
