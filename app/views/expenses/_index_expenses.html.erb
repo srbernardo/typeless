@@ -1,4 +1,4 @@
-<div class="expense-container mt-4 mb-5">
+<div class="expense-container mt-2 mb-5">
   <% if expenses.nil? %>
     <p>You don't have any expense yet</p>
   <% else %>
@@ -31,12 +31,12 @@
           <% unless expense.ocr_hash.nil? %>
             <div id="<%= expense.id %>" class="accordion-collapse collapse" data-bs-parent="#accordionExpenses">
               <div class="accordion-body text-start text-secondary">
-                  <p>Items :</p>
-                  <div class="d-flex flex-column">
-                    <% expense.ocr_hash["line_items"].each do |item| %>
-                      <li class="item_acordion"><%= item["text"] %></li>
-                    <% end %>
-                  </div>
+                <p>Items :</p>
+                <div class="d-flex flex-column">
+                  <% expense.ocr_hash["line_items"].each do |item| %>
+                    <li class="item_acordion"><%= item["text"] %></li>
+                  <% end %>
+                </div>
               </div>
             </div>
           <% end %>
