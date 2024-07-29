@@ -1,7 +1,4 @@
 class Expense < ApplicationRecord
-  include PgSearch::Model
-  pg_search_scope :search_all_fields, against: [:description, :place, :category, :payment_type, :value],
-  using: { tsearch: { prefix: true } }
   PAYMENT_TYPE = ["cash", "credit card", "debit card", "pix"]
   CATEGORY = [
     "restaurant",
@@ -24,4 +21,10 @@ class Expense < ApplicationRecord
   validates :unity, presence: true
   validates :value, presence: true
   validates :category, presence: true
+
+  serialize :ocr_hash, JSON
+
+  def self.search_all_fields(query)
+    where("description LIKE :query OR place LIKE :query OR category LIKE :query OR payment_type LIKE :query OR value LIKE :query", query: "%#{query}%")
+  end
 end

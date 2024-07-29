@@ -60,6 +60,9 @@ class ExpensesController < ApplicationController
       date: ocr_hash["date"],
       place: ocr_hash["vendor"]["name"]
     )
+    puts "========================================="
+    puts @expense.ocr_hash
+    puts "========================================="
   end
 
   def expense_params
